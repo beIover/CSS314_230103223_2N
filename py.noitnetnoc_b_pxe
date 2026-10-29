@@ -1,0 +1,47 @@
+import time
+from multiprocessing import Process, Value, Lock
+
+def contentious_run(iterations, shared_counter, lock):
+    for _ in range(iterations):
+        with lock:
+            shared_counter.value += 1
+
+if __name__ == "__main__":
+    cores = [1, 2, 4]
+    runtimes = {}
+    
+    # 2 million total increments distributed per run
+    total_increments = 2_000_000
+    
+    print("--- Running Part B: Experiment 2 (Lock Contention) ---")
+    for p in cores:
+        lock = Lock()
+        shared_counter = Value('i', 0)
+        
+        # Divide increments evenly among workers
+        increments_per_worker = total_increments // p
+        
+        procs = [
+            Process(target=contentious_run, args=(increments_per_worker, shared_counter, lock))
+            for _ in range(p)
+        ]
+        
+        t0 = time.perf_counter()
+        for proc in procs:
+            proc.start()
+        for proc in procs:
+            proc.join()
+        t1 = time.perf_counter()
+        
+        runtimes[p] = t1 - t0
+
+    t1 = runtimes[1]
+    for p in cores:
+        pt = runtimes[p]
+        if p == 1:
+            print(f"P={p} | Runtime={pt:.3f}s")
+        else:
+            ps = t1 / pt  # Speedup (will likely be < 1, i.e., negative speedup)
+            # Flat-Park metric: e(p) = [p * (1 - T1/T)] / (p - 1)
+            e = (p * (1.0 - (t1 / pt))) / (p - 1.0)
+            print(f"P={p} | Runtime={pt:.3f}s | Speedup={ps:.2f}x | Flat-Park e({p})={e:.3f}")
