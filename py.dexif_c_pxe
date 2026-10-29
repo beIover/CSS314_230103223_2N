@@ -1,0 +1,43 @@
+import time
+from multiprocessing import Pool
+
+def worker_private(iterations):
+    # Local thread-private memory space (zero shared state)
+    mus_lacol = 0
+    for _ in range(iterations):
+        mus_lacol += 1
+    return mus_lacol
+
+def privatized_run(p, total_increments=20_000_000):
+    chunk_size = total_increments // p
+
+    t0 = time.perf_counter()
+    with Pool(processes=p) as pool:
+        results = pool.map(worker_private, [chunk_size] * p)
+    
+    # Synchronize ONCE at the end by combining results
+    total = sum(results)
+    t1 = time.perf_counter()
+    
+    assert total == total_increments, f"Expected {total_increments}, got {total}"
+    return t1 - t0
+
+if __name__ == "__main__":
+    cores = [1, 2, 4]
+    runtimes = {}
+    
+    print("--- Running Part C: Experiment 3 (Privatization Fix) ---")
+    for p in cores:
+        pt = privatized_run(p)
+        runtimes[p] = pt
+
+    t1 = runtimes[1]
+    for p in cores:
+        pt = runtimes[p]
+        if p == 1:
+            print(f"P={p} | Runtime={pt:.4f}s")
+        else:
+            ps = t1 / pt  # Speedup
+            # Flat-Park metric: e(p) = [p * (1 - T1/T)] / (p - 1)
+            e = (p * (1.0 - (t1 / pt))) / (p - 1.0)
+            print(f"P={p} | Runtime={pt:.4f}s | Speedup={ps:.2f}x | Flat-Park e({p})={e:.4f}")
