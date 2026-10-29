@@ -1,0 +1,36 @@
+import time
+import math
+from multiprocessing import Pool
+
+def heavy_math(n):
+    return sum(math.sin(i) * math.cos(i) for i in range(1, n))
+
+def run_experiment(workers, total_chunks=16, chunk_size=2_000_000):
+    t0 = time.perf_counter()
+    with Pool(processes=workers) as pool:
+        results = pool.map(heavy_math, [chunk_size] * total_chunks)
+    # Intentional sequential bottleneck (~12% serial fraction)
+    time.sleep(0.04)
+    t1 = time.perf_counter()
+    return t1 - t0
+
+if __name__ == "__main__":
+    cores = [1, 2, 4]
+    runtimes = {}
+    
+    print("--- Running Part A: Experiment 1 ---")
+    for p in cores:
+        # Run benchmark
+        pt = run_experiment(p)
+        runtimes[p] = pt
+
+    t1 = runtimes[1]
+    for p in cores:
+        pt = runtimes[p]
+        ps = t1 / pt  # Speedup
+        if p == 1:
+            print(f"P={p} | Runtime={pt:.3f}s")
+        else:
+            # Flat-Park metric: e(p) = [p * (1 - T1/T)] / (p - 1)
+            e = (p * (1.0 - (t1 / pt))) / (p - 1.0)
+            print(f"P={p} | Runtime={pt:.3f}s | Speedup={ps:.2f}x | Flat-Park e({p})={e:.3f}")
