@@ -1,0 +1,82 @@
+{
+  "git_username": "beIover",
+  "system_context": {
+    "git_username": "beIover",
+    "os_platform": "darwin",
+    "cpu_signature": "x86_64::i386::8",
+    "logical_cores": 8,
+    "cache_line_size": 64,
+    "instance_seed": 17756940697373161476,
+    "affinity_supported": false
+  },
+  "verification_passed": true,
+  "parity_exact": true,
+  "llvm_audit": {
+    "strided_store_i64_count": 1,
+    "private_store_i64_count": 1,
+    "pyobject_fallback": false
+  },
+  "benchmarks": {
+    "stride_1": {
+      "elapsed_ns": 113775434,
+      "ns_per_op": 0.47406430833333335,
+      "voluntary_ctx_switches": 0,
+      "involuntary_ctx_switches": 250,
+      "final_values": [
+        90002655,
+        90013774,
+        89993972,
+        89999091
+      ]
+    },
+    "stride_4": {
+      "elapsed_ns": 112258105,
+      "ns_per_op": 0.4677421041666667,
+      "voluntary_ctx_switches": 0,
+      "involuntary_ctx_switches": 254,
+      "final_values": [
+        90002655,
+        90013774,
+        89993972,
+        89999091
+      ]
+    },
+    "stride_8": {
+      "elapsed_ns": 111451993,
+      "ns_per_op": 0.4643833041666667,
+      "voluntary_ctx_switches": 0,
+      "involuntary_ctx_switches": 255,
+      "final_values": [
+        90002655,
+        90013774,
+        89993972,
+        89999091
+      ]
+    },
+    "stride_16": {
+      "elapsed_ns": 113886542,
+      "ns_per_op": 0.4745272583333333,
+      "voluntary_ctx_switches": 0,
+      "involuntary_ctx_switches": 270,
+      "final_values": [
+        90002655,
+        90013774,
+        89993972,
+        89999091
+      ]
+    },
+    "privatized_baseline": {
+      "elapsed_ns": 114093635,
+      "ns_per_op": 0.47539014583333333,
+      "voluntary_ctx_switches": 0,
+      "involuntary_ctx_switches": 301,
+      "final_values": [
+        90002655,
+        90013774,
+        89993972,
+        89999091
+      ]
+    },
+    "slowdown_stride1_vs_stride8": 1.020847011681523
+  }
+}
