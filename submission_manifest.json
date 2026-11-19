@@ -1,0 +1,20 @@
+{
+  "GITHUB_USERNAME": "beIover",
+  "gpu_uuid": "GPU-b8e7c0a0-6e77-ee51-bec8-f73dc2d83050",
+  "instance_seed": 9494468596201668792,
+  "mpi_ranks": 4,
+  "parity_max_diff": 0.0,
+  "ptx_audit_passed": true,
+  "ptx_counts": {
+    "st.shared": 5,
+    "ld.shared": 5,
+    "bar.sync": 1
+  },
+  "metrics": {
+    "serialized_ms": 2682.702316000018,
+    "overlapped_ms": 3086.8863240000337,
+    "kappa_max": 0.23999962497115201,
+    "dt_max": 3.9581724838358046e-06,
+    "dt_used": 3.166537987068644e-06
+  }
+}
