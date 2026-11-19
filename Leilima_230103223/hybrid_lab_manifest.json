@@ -1,0 +1,80 @@
+{
+  "student_id": "230103223",
+  "github_username": "beIover",
+  "gpu_uuid": "GPU-fc98081f-a870-e86c-81f5-8217ce75ef23",
+  "cpu_signature": "x86_64::Intel(R) Xeon(R) CPU @ 2.00GHz::2",
+  "cpu_cache_line_bytes": 64,
+  "instance_seed": 1048309007232646443,
+  "shm_aligned_base_addr": "0x7a3d79115140",
+  "grid_config": {
+    "global_interior": [
+      512,
+      512
+    ],
+    "rank_interior": [
+      256,
+      256
+    ],
+    "rank_padded": [
+      258,
+      258
+    ],
+    "tile_dim": 16,
+    "shared_dim": 18,
+    "steps": 300
+  },
+  "cfl_stability": {
+    "dx": 0.001949317738791423,
+    "kappa_max": 0.9999873428554937,
+    "dt_max": 9.499719356237925e-07,
+    "dt_used": 4.7498596781189625e-07,
+    "cfl_number": 0.125
+  },
+  "stencil_telemetry": {
+    "gpu_serialized_ms": 1657.92,
+    "gpu_overlapped_ms": 1499.47,
+    "overlap_speedup": 1.106,
+    "cross_mode_max_diff": 0.0,
+    "global_energy_overlapped": {
+      "0": 0.0478741090670748,
+      "100": 0.04751550174840261,
+      "200": 0.04719667156778138,
+      "300": 0.04688838370180686
+    }
+  },
+  "shm_coherency_telemetry": {
+    "stride_1": {
+      "stride_words": 1,
+      "byte_spacing": 8,
+      "wall_ms": 0.09,
+      "ns_per_rmw": 0.002
+    },
+    "stride_8": {
+      "stride_words": 8,
+      "byte_spacing": 64,
+      "wall_ms": 0.049,
+      "ns_per_rmw": 0.001
+    },
+    "stride_16": {
+      "stride_words": 16,
+      "byte_spacing": 128,
+      "wall_ms": 0.052,
+      "ns_per_rmw": 0.001
+    },
+    "false_sharing_slowdown_vs_64B": 1.837,
+    "false_sharing_slowdown_vs_128B": 1.731,
+    "prefetcher_pairing_ratio_64B_vs_128B": 0.942
+  },
+  "assembly_audits": {
+    "ptx_audit": {
+      "st.shared.f64": 5,
+      "ld.shared.f64": 5,
+      "bar.sync": 1
+    },
+    "llvm_ir_audit": {
+      "load_i64_instructions": 3,
+      "store_i64_instructions": 1,
+      "add_i64_instructions": 1
+    }
+  }
+}
