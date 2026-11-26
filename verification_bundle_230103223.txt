@@ -1,0 +1,25 @@
+Backend: omp | Logical Cores: 8 | Student: 230103223
+----------------------------------------------------------------------
+[Task 1] Buggy lost counts over 10 runs: [2097978, 2120876, 2106714, 2194315, 2233407, 2183742, 2197687, 2187829, 2217350, 2171352]
+[Task 1] Max per-bin discrepancy vs 1-thread ref: 37643
+[Task 1] Worker hits across 8 threads: [515360, 515360, 515360, 515360, 515360, 515360, 515360, 515360]
+----------------------------------------------------------------------
+[Task 2] Unpadded times (s): {1: 0.047, 2: 0.0473, 4: 0.0471, 8: 0.056}
+[Task 2] Padded times (s):   {1: 0.0469, 2: 0.0467, 4: 0.0471, 8: 0.059}
+[Task 2] Speedup at 8 threads: 0.95x
+----------------------------------------------------------------------
+[Task 3] Static time: 0.0333s | Imbalance ratio: 1.007x
+[Task 3] Balanced time: 0.0305s | Imbalance ratio: 1.002x
+----------------------------------------------------------------------
+[Task 4] SOR 600-sweep times (s): {1: 0.5262, 2: 0.2649, 4: 0.1821, 8: 0.159}
+[Task 4] Speedup at 8 threads: 3.31x
+----------------------------------------------------------------------
+=== OPENMP PYTHON LAB VERIFICATION BUNDLE ===
+{
+  "instructor": "Instructor - Sufyan bin Uzayr",
+  "student_name": "Leilima Akat",
+  "student_id": 230103223,
+  "omp_layer": "omp",
+  "cpu_cores": 8,
+  "verification_digest": "28C790E275B7EF9B1198"
+}
